@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Search</title>
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+    <div class="container" style="background-color: rgb(195, 250, 222);">
+        <h1>Search for a Recipe</h1>
+        <form action="/search" method="POST">
+            <label for="ingredient">Enter an ingredient:</label>
+            <input type="text" id="ingredient" name="ingredient" required>
+            <button type="submit">Search</button>
+        </form>
+
+        <!-- Check if recipes are defined and not empty -->
+        <% if (typeof recipes !== 'undefined' && recipes.length > 0) { %>
+            <ul>
+                <% recipes.forEach(recipe => { %>
+                    <li>
+                        <img src="<%= recipe.strMealThumb %>" alt="<%= recipe.strMeal %>" />
+                        <h3><%= recipe.strMeal %></h3>
+                    </li>
+                <% }) %>
+            </ul>
+        <% } else if (typeof recipes !== 'undefined') { %>
+            <p>No recipes found for the given ingredient.</p>
+        <% } %>
+    </div>
+</body>
+</html>
